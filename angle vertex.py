@@ -25,7 +25,7 @@ pins=(32,4,5,12,13,14,15,16)
 for i in range(len(pins)):
     globals()['p'+str(i+1)]=m.Pin(pins[i],m.Pin.OUT)
     globals()['p'+str(i+1)].on()
-led=m.Pin(2,m.Pin.OUT)
+led=m.Pin(4,m.Pin.OUT)
 led.off()
 def update():
     code=""
