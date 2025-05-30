@@ -31,7 +31,7 @@ def update():
     code=""
     while code=="":
         led.toggle()
-        try:code=url.get("https://gist.githubusercontent.com/eureca114/516ba7c37a87b8d2d47dbb725eaab7a5/raw/b611540fa7c4605b8994c1d4ab9060fab98d6d97/Trial.py")
+        try:code=url.get("https://raw.githubusercontent.com/eureca114/eureca114/refs/heads/main/angle%20vertex.py")
         except:pass
         time.sleep(1)
     with open('main.py','w') as f:f.write(code.text)
