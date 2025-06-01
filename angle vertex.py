@@ -353,15 +353,6 @@ def blynk_connected(ping):
 blynk.virtual_write(1,p1.value())
 blynk.virtual_write(0,0)
 blynk.sync_virtual(1,2,3,4,5,6,7,8)
-x=m.Pin(12,m.Pin.OUT)
-x=m.PWM(x)
-y=m.PWM(led)
-z=1
-for i in range(17):
-    time.sleep(0.5)
-    print(z)
-    x.duty_u16(z-1)
-    z*=2
 def runLoop():
     while True:
         try:
