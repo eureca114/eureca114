@@ -361,9 +361,9 @@ def main():
                     time.sleep_ms(300)
                 blynk.run()
                 m.idle()
-            except:runloop()
+            except:main()
     # Run blynk in the main thread:
     try:runLoop()
     except:main()
 try:main()
-except:m.reset()
+except:p1.off()
