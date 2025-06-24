@@ -40,7 +40,7 @@ def main():
             led.toggle()
             time.sleep(1)
         led.off()
-        m.reset()
+        p1.off()
     class BlynkLib:
         global BlynkProtocol,EventEmitter,dummy,socket,SOCK_TIMEOUT,gettime,struct,__version__,sys
         __version__ = "1.0.0"
