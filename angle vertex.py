@@ -28,6 +28,7 @@ for i in range(len(pins)):
 led=m.Pin(2,m.Pin.OUT)
 led.off()
 def main():
+    global wdt
     def update():
         code=""
         while code=="":
@@ -351,6 +352,7 @@ def main():
     blynk.virtual_write(1,p1.value())
     blynk.virtual_write(0,0)
     blynk.sync_virtual(1,2,3,4,5,6,7,8)
+    wdt=m.WDT(timeout=10000)
     def runLoop():
         while True:
             try:
@@ -359,9 +361,11 @@ def main():
                     try:wifi.connect(WIFI_SSID,WIFI_PASS)
                     except:pass
                     time.sleep_ms(300)
+                    wdt.feed()
                 blynk.run()
                 m.idle()
             except:main()
+        wdt.feed()
     # Run blynk in the main thread:
     try:runLoop()
     except:main()
