@@ -29,15 +29,14 @@ led=m.Pin(2,m.Pin.OUT)
 led.off()
 def main():
     global wdt
-    wdt=m.WDT(timeout=10000)
     def update():
+        wdt=None
         code=""
         while code=="":
             led.toggle()
             try:code=url.get("https://raw.githubusercontent.com/eureca114/eureca114/d482b3f0378cdc4aecd5d6a4a72168cec8f1a4cd/angle%20vertex.py")
             except:pass
             time.sleep(1)
-            wdt.feed()
         with open('main.py','w') as f:f.write(code.text)
         for i in range(4):
             led.toggle()
@@ -336,6 +335,7 @@ def main():
     print("Connecting to WiFi...")
     wifi = WLAN(STA_IF)
     wifi.active(True)
+    wdt=m.WDT(timeout=10000)
     try:
         while not wifi.isconnected():
             led.toggle()
