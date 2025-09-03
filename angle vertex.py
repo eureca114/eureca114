@@ -29,6 +29,7 @@ led=m.Pin(2,m.Pin.OUT)
 led.off()
 def main():
     global wdt
+    wdt=m.WDT(timeout=10000)
     def update():
         code=""
         while code=="":
@@ -36,6 +37,7 @@ def main():
             try:code=url.get("https://raw.githubusercontent.com/eureca114/eureca114/d482b3f0378cdc4aecd5d6a4a72168cec8f1a4cd/angle%20vertex.py")
             except:pass
             time.sleep(1)
+            wdt.feed()
         with open('main.py','w') as f:f.write(code.text)
         for i in range(4):
             led.toggle()
@@ -340,6 +342,7 @@ def main():
             try:wifi.connect(WIFI_SSID,WIFI_PASS)
             except:pass
             time.sleep_ms(300)
+            wdt.feed()
     except:main()
     print('IP:', wifi.ifconfig()[0])
 
@@ -352,7 +355,6 @@ def main():
     blynk.virtual_write(1,p1.value())
     blynk.virtual_write(0,0)
     blynk.sync_virtual(1,2,3,4,5,6,7,8)
-    wdt=m.WDT(timeout=10000)
     def runLoop():
         while True:
             try:
