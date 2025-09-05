@@ -30,9 +30,9 @@ led.off()
 def main():
     global wdt
     def update():
-        wdt=None
         code=""
         while code=="":
+            wdt.feed()
             led.toggle()
             try:code=url.get("https://raw.githubusercontent.com/eureca114/eureca114/d482b3f0378cdc4aecd5d6a4a72168cec8f1a4cd/angle%20vertex.py")
             except:pass
