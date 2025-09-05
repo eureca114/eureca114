@@ -336,16 +336,18 @@ def main():
     wifi = WLAN(STA_IF)
     wifi.active(True)
     wdt=m.WDT(timeout=10000)
-    try:
+    def wificon(timeout=60000):
+        try:
+          if not wifi.isconnected():wifi.connect(WIFI_SSID,WIFI_PASS)
+        except:m.reset()
+        start=time.ticks_ms()
         while not wifi.isconnected():
             led.toggle()
-            try:wifi.connect(WIFI_SSID,WIFI_PASS)
-            except:pass
             time.sleep_ms(300)
             wdt.feed()
-    except:main()
-    print('IP:', wifi.ifconfig()[0])
-
+            if time.ticks_diff(time.ticks_ms(),start)>timeout:m.reset()
+        print('IP:', wifi.ifconfig()[0])
+    wificon()
     print("Connecting to Blynk...")
     blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
@@ -357,19 +359,14 @@ def main():
     blynk.sync_virtual(1,2,3,4,5,6,7,8)
     def runLoop():
         while True:
-            try:
-                while not wifi.isconnected():
-                    led.toggle()
-                    try:wifi.connect(WIFI_SSID,WIFI_PASS)
-                    except:pass
-                    time.sleep_ms(300)
-                    wdt.feed()
-                blynk.run()
-                m.idle()
-            except:main()
-        wdt.feed()
+            if wifi.isconnected():
+                try:blynk.run()
+                except:m.reset()
+            else:wificon()
+            m.idle()
+            wdt.feed()
     # Run blynk in the main thread:
     try:runLoop()
-    except:main()
+    except:m.reset()
 try:main()
 except:p1.off()
