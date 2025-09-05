@@ -360,11 +360,10 @@ def main():
     def runLoop():
         while True:
             if wifi.isconnected():
-                try:blynk.run()
-                except:m.reset()
+                  wdt.feed()
+                  blynk.run()
             else:wificon()
             m.idle()
-            wdt.feed()
     # Run blynk in the main thread:
     try:runLoop()
     except:m.reset()
