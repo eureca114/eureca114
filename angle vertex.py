@@ -261,7 +261,6 @@ def main():
                                 for i in range(2,9):
                                     globals()['p'+str(i)].value(1)
                                     for i in range(2,9):self.virtual_write(i,1)
-                                    led.off()
                             self.virtual_write(int(args[1]),globals()['p'+args[1]].value())
                         else:update()
         import socket
