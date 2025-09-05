@@ -339,7 +339,7 @@ def main():
     def wificon(timeout=60000):
         try:
           if not wifi.isconnected():wifi.connect(WIFI_SSID,WIFI_PASS)
-        except:m.reset()
+        except:p1.off()
         start=time.ticks_ms()
         while not wifi.isconnected():
             led.toggle()
@@ -362,11 +362,11 @@ def main():
             if wifi.isconnected():
                 wdt.feed()
                 try:blynk.run()
-                except:m.reset()
+                except:p1.off()
             else:wificon()
             m.idle()
     # Run blynk in the main thread:
     try:runLoop()
-    except:m.reset()
+    except:p1.off()
 try:main()
 except:p1.off()
