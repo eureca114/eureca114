@@ -256,7 +256,6 @@ def main():
                         if(args[1]!='0'):
                             if(args[1]=='1'):globals()['p'+args[1]].value(int(args[2]))
                             elif(p1.value()):
-                                if(args[1]=='2'):led.value(not int(args[2]))
                                 globals()['p'+args[1]].value(int(args[2]))
                             if(args[1]=='1' and args[2]=='0'):
                                 for i in range(2,9):
