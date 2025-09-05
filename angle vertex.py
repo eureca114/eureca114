@@ -345,6 +345,7 @@ def main():
             time.sleep_ms(300)
             wdt.feed()
             if time.ticks_diff(time.ticks_ms(),start)>timeout:m.reset()
+        led.off()
         print('IP:', wifi.ifconfig()[0])
     wificon()
     print("Connecting to Blynk...")
