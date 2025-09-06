@@ -333,7 +333,7 @@ def main():
     print("Connecting to WiFi...")
     wifi = WLAN(STA_IF)
     wifi.active(True)
-    wdt=m.WDT(timeout=10000)
+    wdt=m.WDT(timeout=3000)
     def wificon(timeout=60000):
         try:
           if not wifi.isconnected():wifi.connect(WIFI_SSID,WIFI_PASS)
