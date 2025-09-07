@@ -21,6 +21,7 @@ import machine as m
 import urequests as url
 import time
 from network import *
+wdt=m.WDT(timeout=3000)
 pins=(32,4,5,12,13,14,15,16)
 for i in range(len(pins)):
     globals()['p'+str(i+1)]=m.Pin(pins[i],m.Pin.OUT,m.Pin.PULL_DOWN)
@@ -333,7 +334,6 @@ def main():
     print("Connecting to WiFi...")
     wifi = WLAN(STA_IF)
     wifi.active(True)
-    wdt=m.WDT(timeout=3000)
     def wificon(timeout=60000):
         try:
           if not wifi.isconnected():wifi.connect(WIFI_SSID,WIFI_PASS)
@@ -365,6 +365,7 @@ def main():
             else:wificon()
             m.idle()
     # Run blynk in the main thread:
+    wdt.feed()
     try:runLoop()
     except:p1.off()
 try:main()
