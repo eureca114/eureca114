@@ -22,7 +22,7 @@ import urequests as url
 import time
 from network import *
 wdt=m.WDT(timeout=3000)
-pins=(32,5,4,12,13,14,15,16)
+pins=(32,4,5,12,13,14,15,16)
 for i in range(len(pins)):
     globals()['p'+str(i+1)]=m.Pin(pins[i],m.Pin.OUT,m.Pin.PULL_DOWN)
     globals()['p'+str(i+1)].on()
