@@ -39,10 +39,10 @@ def main():
             except:pass
             time.sleep(1)
         with open('main.py','w') as f:f.write(code.text)
-        for i in range(4):
-            led.toggle()
-            time.sleep(1)
-            wdt.feed()
+        for i in range(65535,-1,-10):
+              m.PWM(m.Pin(2)).duty_u16(i)
+              time.sleep_us(1)
+        m.Pin(2,m.Pin.OUT).off()
         led.off()
         p1.off()
     class BlynkLib:
