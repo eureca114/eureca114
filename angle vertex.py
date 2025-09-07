@@ -57,7 +57,7 @@ def main():
         try:
             import machine
             gettime = lambda: time.ticks_ms()
-            SOCK_TIMEOUT = 0
+            SOCK_TIMEOUT = 1
         except ImportError:
             const = lambda x: x
             gettime = lambda: int(time.time() * 1000)
