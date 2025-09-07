@@ -42,6 +42,7 @@ def main():
         for i in range(4):
             led.toggle()
             time.sleep(1)
+            wdt.feed()
         led.off()
         p1.off()
     class BlynkLib:
