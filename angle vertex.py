@@ -330,7 +330,7 @@ def main():
 
 
     BLYNK_TEMPLATE_NAME="Angle Vertex"
-    BLYNK_AUTH="NGtyYuFErn42hGzqIw4PrS454KWA0Vf1"
+    BLYNK_AUTH="DIWOmX9z9ZCM-VABcC-iLp9QNgkA9L-"
 
     print("Connecting to WiFi...")
     wifi = WLAN(STA_IF)
